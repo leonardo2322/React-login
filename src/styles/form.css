@@ -28,6 +28,10 @@
     font-size: 1rem;
     color: rgb(4, 81, 247);
   }
+  #isadmin{
+    margin: 0;
+    font-size:16px;
+  }
   /*Login*/
   .login {
     position: relative;

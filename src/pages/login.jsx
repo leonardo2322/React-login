@@ -1,35 +1,31 @@
 import '../styles/form.css'
-import { useNavigate} from 'react-router-dom'
-import RouterSecurity from '../components/RouterSecurity'
 import { useDispatch } from 'react-redux'
 import { login } from '../features/UserReducer'
+import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { initialState } from '../app/initialState'
+
 const Test = () => {
 	const dispatch = useDispatch()
-	const db = [{
-		id:1,
-		user:'leonardo030397@hotmail.com',
-		password: 222
-	},{
-		id:2,
-		user:"elmorenito_030397@hotmail.com",
-		password:5563
-	}]
+	const navigate = useNavigate()
 
-	const navigate  = useNavigate()
+	const [isAdmin, setAdmin] = useState(false)
 
 	const Login =(e) =>{
 		e.preventDefault()
-		const email = e.target[0].value
-		const password = e.target[1].value
-		dispatch(login('parametercounter'))
-		db.filter(User=>{
-			if(email == User.user && password == User.password){
-				 navigate(`/home/${User.id} `)
-			}
-			
-		})
 		
 
+		initialState.filter(user => {
+			if (user.email == e.target[0].value && user.password == e.target[1].value){
+				dispatch(login(true))
+			  navigate(`/home/`)
+			}
+		
+		
+		
+	})}
+	const handleChance =  (e) =>{
+		
 	}
 
 
@@ -41,8 +37,9 @@ const Test = () => {
 			<div className="login" onSubmit={(e) =>Login(e)}>
 				<form className="form">
 					<label htmlFor="chk" aria-hidden="true">Log in</label>
-					<input className="input" type="email" name="email" placeholder="Email" required="" />
-					<input className="input" type="password" name="pswd" placeholder="Password" required="" />
+					<input className="input" type="email" name="email" placeholder="Email" required="" onChange={handleChance}/>
+					<input className="input" type="password" name="password" placeholder="Password" required="" onChange={handleChance} />
+				
 					<button>Log in</button>
 				</form>
 			</div>
@@ -53,6 +50,8 @@ const Test = () => {
 					<input className="input" type="text" name="txt" placeholder="Username" required="" />
 					<input className="input" type="email" name="email" placeholder="Email" required="" />
 					<input className="input" type="password" name="pswd" placeholder="Password" required="" />
+					<label htmlFor="isAdmin" id='isadmin' aria-hidden="true">User Admin</label>
+					<input type="checkbox" name="isAdmin" id="isAdmin" onChange={() => setAdmin(!isAdmin)}/>
 					<button>Register</button>
 				</form>
 			</div>

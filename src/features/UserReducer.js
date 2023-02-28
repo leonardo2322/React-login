@@ -1,30 +1,23 @@
 import { createSlice } from "@reduxjs/toolkit";
-const initialState = [
-  {
-    id: 1,
-    user: "leonardo030397@hotmail.com",
-    password: 222,
-    permisions: [{ isAdmin: true }],
-    date: "03/03/2025"
-  },
-  {
-    id: 2,
-    user: "elmorenito_030397@hotmail.com",
-    password: 5563,
-    permisions: [{ isAdmin: false}],
-    date: "16/08/2025"
-  },
-];
+import { initialState } from "../app/initialState";
 
+import { useNavigate } from "react-router-dom";
 export const UserSlice = createSlice({
   name: "users",
-  initialState: initialState,
+  initialState: {
+    user:null
+  },
+
   reducers: {
-    login:(actions) =>{
-      console.log('logeando')
-    }
+    login: (state, actions) => {
+      state.user = actions.payload
+
+    },
+    logout: (state) => {
+      state.user = null
+    },
   },
 });
-export const {login} = UserSlice.actions
+export const { login ,logout} = UserSlice.actions;
 
 export default UserSlice.reducer;
