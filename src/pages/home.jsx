@@ -1,23 +1,28 @@
 import { Link, redirect, useNavigate } from "react-router-dom";
-import { useDispatch } from 'react-redux'
+import { useDispatch } from "react-redux";
 import { login } from "../features/UserReducer";
 const Home = () => {
-  const dispatch  = useDispatch()
-  const navigate = useNavigate()
-  const handleClick = ()=>{
-    console.log('aqui')
-    dispatch(login(null))
-    return navigate("/")
-  }
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const handleClick = () => {
+    dispatch(login(null));
+    return navigate("/");
+  };
   return (
     <div>
-      <nav>
-        <ul>
-          <li><Link to={"/home"}>home</Link></li>
-          <li><Link to={"/Profile"}>me</Link></li>
-          <button onClick={()=> handleClick()}>logout</button>
-        </ul>
-      </nav>
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Especificacion</th>
+            <th>Cantidad</th>
+            <th>Precio</th>
+          </tr>
+        </thead>
+      </table>
+      <ul>
+        <button onClick={() => handleClick()}>logout</button>
+      </ul>
     </div>
   );
 };

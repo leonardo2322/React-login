@@ -37,14 +37,14 @@ const Test = () => {
 			<div className="login" onSubmit={(e) =>Login(e)}>
 				<form className="form">
 					<label htmlFor="chk" aria-hidden="true">Log in</label>
-					<input className="input" type="email" name="email" placeholder="Email" required="" onChange={handleChance}/>
-					<input className="input" type="password" name="password" placeholder="Password" required="" onChange={handleChance} />
+					<input className="input" type="email" name="email" placeholder="Email" required="" />
+					<input className="input" type="password" name="password" placeholder="Password" required=""  />
 				
 					<button>Log in</button>
 				</form>
 			</div>
 
-      <div className="register">
+      <div className="register ">
 				<form className="form registerform">
 					<label htmlFor="chk" aria-hidden="true">Register</label>
 					<input className="input" type="text" name="txt" placeholder="Username" required="" />

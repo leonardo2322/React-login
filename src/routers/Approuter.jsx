@@ -5,8 +5,9 @@ import { Me } from "../pages/me";
 import RouterSecurity from "../components/RouterSecurity.jsx";
 import ControlErrors from "../components/ControlErrors.jsx";
 import Layout from "../components/Layout.jsx";
-
+import { useSelector } from "react-redux";
 const Approuter = () => {
+  const user = useSelector((state) => state.user);
   const router = createBrowserRouter([
     {
       path: "/",
@@ -18,22 +19,31 @@ const Approuter = () => {
           element: <Test />,
         },
         {
-          path: "/home/",
+          path: "home/",
           element: (
-            <RouterSecurity>
+            <RouterSecurity user={user.user}>
               <Home />
             </RouterSecurity>
           ),
         },
         {
-          path: "/Profile/",
+          path: "Profile/",
           element: (
-            <RouterSecurity>
+            <RouterSecurity user={user.user}>
               <Me />
             </RouterSecurity>
           ),
-        }
+        },
       ],
+    },
+    {
+      path: "/home/",
+      element: (
+        <RouterSecurity user={user.user}>
+          <Home />
+        </RouterSecurity>
+      ),
+      errorElement: <ControlErrors />,
     },
   ]);
   return <RouterProvider router={router} />;

@@ -1,9 +1,11 @@
-import { useSelector } from "react-redux";
-import {  Navigate } from "react-router-dom";
+import {  Navigate, Outlet } from "react-router-dom";
 
-const RouterSecurity = ({ children, redirecTo = "/login" }) => {
-  const user = useSelector((state) => state.user);
+const RouterSecurity = ({ user,children, redirecTo = "/" }) => {
+  console.log(user,children);
+  if (!user){
+    return <Navigate to={redirecTo} replace />;
+  }
 
-  return user.user === true ? children : <Navigate to={redirecTo} replace />;
+  return children ? children : <Outlet/>
 }
 export default RouterSecurity;
