@@ -1,4 +1,6 @@
 .Main__content{
-    display: grid;
+    position: relative;
+    display: flex;
     justify-content: center;
+  
 }
