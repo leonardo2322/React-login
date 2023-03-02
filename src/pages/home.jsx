@@ -4,6 +4,12 @@ import { login } from "../features/UserReducer";
 import "../styles/home.css";
 import { useState } from "react";
 import Tables from "../components/tables";
+import {
+  BsTable,
+  BsPencilSquare,
+  BsTrash,
+  BsCheck2Square,
+} from "react-icons/bs";
 const Home = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -11,6 +17,9 @@ const Home = () => {
 
   const HandleMenuClick = () => {
     setActive(!active);
+  };
+  const click = () => {
+    /* setActive(!active); */
   };
   const handleClick = () => {
     dispatch(login(null));
@@ -40,7 +49,43 @@ const Home = () => {
         <div id="body__side"></div>
       </section>
       <section className={`side__menu ${active ? "active" : ""} `}>
-        <div></div>
+        <div className="side__body">
+          <div className="actions">
+            <h4>Acciones</h4>
+            <button type="button" className="icon">
+              <BsPencilSquare color="#daa520" fontSize={"1rem"} />
+              Insertar
+            </button>
+            <button type="button" className="icon">
+              <BsPencilSquare color="#daa520" fontSize={"1rem"} />
+              Actualizar
+            </button>
+            <button type="button" className="icon">
+              <BsCheck2Square color="#daa520" fontSize={"1rem"} />
+              Guardar
+            </button>
+            <button type="button" className="icon">
+              <BsTrash color="#daa520" fontSize={"1rem"} />
+              Eliminar
+            </button>
+            <hr />
+          </div>
+          <div>
+            <h4>Navegacion</h4>
+            <button type="button" className="icon">
+              <BsTable color="#daa520" fontSize={"1rem"}></BsTable>Recetas
+            </button>
+            <button type="button" className="icon">
+              <BsTable color="#daa520" fontSize={"1rem"}></BsTable>R_Diario
+            </button>
+            <button type="button" className="icon">
+              <BsTable color="#daa520" fontSize={"1rem"}></BsTable>C.Product
+            </button>
+            <button type="button" className="icon">
+              <BsTable color="#daa520" fontSize={"1rem"}></BsTable>Ganancia
+            </button>
+          </div>
+        </div>
       </section>
       <section className="home__body">
         <Tables handleClick={handleClick}>

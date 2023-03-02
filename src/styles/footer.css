@@ -5,9 +5,9 @@
     font-size: 0.7rem;
     color: #fff;
     background-size: cover;
-    background-color: #a7658d;
-
-    border-top-left-radius: 80px;
+    background-color: #192730;
+    max-width: none;
+    border-top-right-radius: 80px;
     
 }
 .container__footer{

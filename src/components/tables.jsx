@@ -1,10 +1,10 @@
 import React from "react";
-
+import '../styles/tables.css'
 const Tables = ({ handleClick,children }) => {
   return (
     <>
         
-      <h1 >Resetas</h1>
+      <h1 className="title__tables">Resetas</h1>
       <table className="table  table-hover table-dark ">
         <thead>
           <tr>
