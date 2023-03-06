@@ -1,30 +1,36 @@
-import { Link, redirect, useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { login } from "../features/UserReducer";
+import {  useNavigate } from "react-router-dom";
+import { useDispatch,useSelector } from "react-redux";
+import { login, tabActive } from "../features/UserReducer";
 import "../styles/home.css";
 import { useState } from "react";
 import Tables from "../components/tables";
+import Modal from "../components/modal";
 import {
   BsTable,
   BsPencilSquare,
   BsTrash,
   BsCheck2Square,
 } from "react-icons/bs";
+
+
 const Home = () => {
+
   const dispatch = useDispatch();
+  const selector = useSelector((state) => state.user.tableActive)
   const navigate = useNavigate();
   const [active, setActive] = useState(false);
+  const [IdModal, setIdModal]= useState("");
 
-  const HandleMenuClick = () => {
-    setActive(!active);
-  };
-  const click = () => {
-    /* setActive(!active); */
+  const HandleMenuClick = () =>  setActive(!active);
+ 
+  const handleClickTables = (name) => {
+    dispatch(tabActive({id:name, active:true}))
   };
   const handleClick = () => {
     dispatch(login(null));
     return navigate("/");
   };
+  console.log(selector)
   return (
     <div className="contain__home">
       <section className="Container__side">
@@ -52,7 +58,14 @@ const Home = () => {
         <div className="side__body">
           <div className="actions">
             <h4>Acciones</h4>
-            <button type="button" className="icon">
+
+            <button
+              type="button"
+              className="icon"
+              data-bs-toggle="modal"
+              data-bs-target="#staticBackdrop"
+              onClick={() => setIdModal(selector.id) }
+            >
               <BsPencilSquare color="#daa520" fontSize={"1rem"} />
               Insertar
             </button>
@@ -72,23 +85,26 @@ const Home = () => {
           </div>
           <div>
             <h4>Navegacion</h4>
-            <button type="button" className="icon">
+            <button type="button" className="icon" onClick={()=> handleClickTables("tablaRecetas")}>
               <BsTable color="#daa520" fontSize={"1rem"}></BsTable>Recetas
             </button>
-            <button type="button" className="icon">
+            <button type="button" className="icon" onClick={()=> handleClickTables("tablaR_diario")}>
               <BsTable color="#daa520" fontSize={"1rem"}></BsTable>R_Diario
             </button>
-            <button type="button" className="icon">
+            <button type="button" className="icon" onClick={()=> handleClickTables("tablacostoProducto")}>
               <BsTable color="#daa520" fontSize={"1rem"}></BsTable>C.Product
             </button>
-            <button type="button" className="icon">
+            <button type="button" className="icon" onClick={()=> handleClickTables("Ganancias")}>
               <BsTable color="#daa520" fontSize={"1rem"}></BsTable>Ganancia
             </button>
           </div>
         </div>
       </section>
       <section className="home__body">
-        <Tables handleClick={handleClick}>
+        <Modal ModalNameActive={IdModal} />
+      {
+        selector.active ?
+        <Tables handleClick={handleClick} tabActiveName={selector.id}>
           <table className="table  table-hover table-dark table-striped-columns">
             <thead>
               <tr>
@@ -111,6 +127,9 @@ const Home = () => {
             </tbody>
           </table>
         </Tables>
+        : <h1>Selecciona una tabla en el menu de Navegacion</h1>
+      }
+        
       </section>
     </div>
   );

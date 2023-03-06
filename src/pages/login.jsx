@@ -24,9 +24,6 @@ const Test = () => {
 		
 		
 	})}
-	const handleChance =  (e) =>{
-		
-	}
 
 
   return (

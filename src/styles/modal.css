@@ -1,0 +1,50 @@
+label{
+    font-size: 14px;
+    color: #ccc;
+    align-self: baseline;
+}
+.modal-body{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.imput-group{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+input{
+    border: none;
+    cursor: pointer;
+    font-size: 0.9rem;
+    background-color: transparent;
+    width: 20rem;
+    outline: none;
+    margin-bottom: 10px;
+    transition: 0.1s ease-in-out;
+}
+input::placeholder{
+    text-transform: capitalize;
+}
+.raya{
+    width: 0%;
+    height: 2px;
+    background-color: rgba(4, 6, 63, 0.39);
+    bottom: 0;
+    left: 0;
+    transition: 0.3s;
+}
+input:focus ~ .raya {
+    width: 15rem;
+}
+
+input[type="number"]{
+    width: 5rem;
+    border: none;
+    font-size: 0.9rem;
+    border-bottom: 2px solid rgba(4, 6, 63, 0.39);
+    background-color: transparent;
+}
